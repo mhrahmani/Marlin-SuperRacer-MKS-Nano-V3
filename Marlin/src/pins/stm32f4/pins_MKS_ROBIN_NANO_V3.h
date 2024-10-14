@@ -285,6 +285,19 @@
  *                EXP1                                               EXP2
  */
 
+/**
+ *                ------                                     ------
+ * (BEEPER)  PC5 |10  9 | PE13 (BTN_ENC)   (SPI1 MISO)  PA6 |10  9 | PA5  (SPI1 SCK)
+ * (LCD_EN) PD13 | 8  7 | PC6  (LCD_RS)      (BTN_EN1)  PE8 | 8  7 | PE10 (SPI1 CS)
+ * (LCD_D4) PE14   6  5 | PE15 (LCD_D5)      (BTN_EN2) PE11   6  5 | PA7  (SPI1 MOSI)
+ * (LCD_D6) PD11 | 4  3 | PD10 (LCD_D7)      (SPI1_RS) PE12 | 4  3 | RESET
+ *           GND | 2  1 | 5V                            GND | 2  1 | 3.3V
+ *                ------                                     ------
+ *                 EXP1                                       EXP2
+ */
+
+
+
 #if ANY(TFT_COLOR_UI, TFT_LVGL_UI, TFT_CLASSIC_UI)
   #ifndef TOUCH_CALIBRATION_X
     #define TOUCH_CALIBRATION_X           -17253
@@ -360,6 +373,20 @@
     // Required for MKS_MINI_12864 with this board
     //#define MKS_LCD12864B
     //#undef SHOW_BOOTSCREEN
+
+  #elif ENABLED(FYSETC_MINI_12864_2_1)
+    #define DOGLCD_CS                PD13
+    #define DOGLCD_A0                PC6
+    #define LCD_PINS_DC              DOGLCD_A0
+    #define LCD_BACKLIGHT_PIN               -1
+    #define LCD_RESET_PIN            PE14
+    #define NEOPIXEL_PIN             PE15
+    #define DOGLCD_MOSI              PA7
+    #define DOGLCD_SCK               PA5
+    #if SD_CONNECTION_IS(ONBOARD)
+      #define FORCE_SOFT_SPI
+    #endif
+    //#define LCD_SCREEN_ROT_180
 
   #else // !MKS_MINI_12864
 
