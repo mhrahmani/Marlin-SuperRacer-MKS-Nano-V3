@@ -355,8 +355,8 @@
 #else
   #define BEEPER_PIN                        PC5
   #define BTN_ENC                           PE13
-  #define LCD_PINS_ENABLE                   PD13
-  #define LCD_PINS_RS                       PC6
+  // #define LCD_PINS_ENABLE                   PD13
+  // #define LCD_PINS_RS                       PC6
   #define BTN_EN1                           PE8
   #define BTN_EN2                           PE11
   #define LCD_BACKLIGHT_PIN                 -1
